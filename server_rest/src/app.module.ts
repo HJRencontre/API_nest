@@ -6,6 +6,8 @@ import { Product } from './products/entities/product.entity';
 import { ProductsModule } from './products/products.module';
 import { Typeuser } from './typeusers/entities/typeuser.entity';
 import { TypeusersModule } from './typeusers/typeusers.module';
+import { User } from './users/entities/user.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { TypeusersModule } from './typeusers/typeusers.module';
       username: 'root',
       password: '',
       database: 'server_rest',
-      entities: [Product, Typeuser],
+      entities: [Product, Typeuser, User],
       synchronize: true,
     }),
     ProductsModule,
     TypeusersModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
