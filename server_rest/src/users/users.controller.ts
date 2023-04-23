@@ -6,9 +6,9 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthGuard } from '@nestjs/passport';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -21,6 +21,7 @@ export class UsersController {
     return this.service.createUser(user);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll() {
     return this.service.getUsers();
@@ -41,6 +42,7 @@ export class UsersController {
     return this.service.updateUser(+id, user);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   remove(@Param('id') user: User) {
     return this.service.deleteUser(user);

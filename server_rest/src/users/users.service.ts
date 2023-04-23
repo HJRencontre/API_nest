@@ -22,6 +22,17 @@ export class UsersService {
     return await this.users.save(user);
   }
 
+  async saveorupdateRefreshToken(
+    refreshToken: string,
+    id: string,
+    refreshtokenexpires,
+  ) {
+    await this.users.update(id, {
+      refreshtoken: refreshToken,
+      refreshtokenexpires,
+    });
+  }
+
   async getUsers(): Promise<User[]> {
     return await this.users.find({ relations: { type: true } });
   }

@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { CategoryModule } from './category/category.module';
+import { Category } from './category/entities/category.entity';
 import { Product } from './products/entities/product.entity';
 import { ProductsModule } from './products/products.module';
 import { Typeuser } from './typeusers/entities/typeuser.entity';
@@ -18,12 +21,14 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: '',
       database: 'server_rest',
-      entities: [Product, Typeuser, User],
+      entities: [Product, Typeuser, User, Category],
       synchronize: true,
     }),
     ProductsModule,
     TypeusersModule,
     UsersModule,
+    AuthModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
